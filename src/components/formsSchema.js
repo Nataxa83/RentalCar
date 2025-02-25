@@ -14,24 +14,5 @@ export const contactFormSchema = Yup.object().shape({
       .matches(phoneRegExp, "Number format is XXX-XXX-XXXX"),
   });
 
-  export const registrationFormSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(3, "Name must be at least 3 characters")
-      .max(20, "Max 20 characters ")
-      .required("Name is required"),
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is required"),
-  });
   
-  export const loginFormSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is required"),
-  });
+ 

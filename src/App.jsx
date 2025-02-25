@@ -1,47 +1,49 @@
-import Layout from "./components/Layout/Layout";
+// import Layout from "./components/Layout/Layout";
 
-import { useDispatch, useSelector } from "react-redux";
-import { lazy, Suspense, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
-import { refresh } from "./redux/auth/operations";
-import { selectIsRefreshing } from "./redux/auth/selectors";
+// import { useDispatch, useSelector } from "react-redux";
+// import { lazy, Suspense, useEffect } from "react";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
-const Homepage = lazy(() => import("./pages/HomePage/HomePage"));
-const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
-const RegistrationPage = lazy(() => import("./pages/RegistrationPage/RegistrationPage"));
-const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
-const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
-const PrivateRoute = lazy(() => import("./components/PrivateRoute/PrivateRoute"));
-const RestrictedRoute = lazy(() => import("./components/RestrictedRoute/RestrictedRoute"));
+// const Homepage = lazy(() => import("./pages/HomePage/HomePage"));
+// const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
+// const CarPage = lazy(() => import("./pages/CarPage/CarPage"));
+// const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
+
+
+import Homepage from "./pages/HomePage/HomePage";
+import CatalogPage from "./pages/CatalogPage/CatalogPage";
+import CarPage from "./pages/CarPage/CarPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 export default function App() {
 
-  const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
+  // const dispatch = useDispatch();
+  // const isRefreshing = useSelector(selectIsRefreshing);
 
-  useEffect(() => {
-    dispatch(refresh());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refresh());
+  // }, [dispatch]);
 
-  if (isRefreshing) {
-    return <div>Loading...</div>;
-  }
+  // if (isRefreshing) {
+  //   return <div>Loading...</div>;
+  // }
    
   return (
     <>
-      <Layout>
-        <Suspense fallback={<div>Loading...</div>}>
+      {/* <Layout>
+        <Suspense fallback={<div>Loading...</div>}> */}
+          <BrowserRouter>
           <Routes>
 
-            <Route path="/" element={<Homepage />} />
-            <Route path="/contacts" element={<PrivateRoute component={<ContactsPage />} />} />
-            <Route path ="/login" element={<RestrictedRoute component={<LoginPage />} />} />
-            <Route path ="/register" element={<RestrictedRoute component={<RegistrationPage />} />} />
+            <Route path="/" element={<Homepage />} > Home </Route> 
+            <Route path="/catalog" element={<CatalogPage />}> Catalog </Route>
+            <Route path ="/catalog/:id" element={<CarPage />} > Car </Route>
             <Route path="*" element={<NotFoundPage />} />
             
           </Routes>
-        </Suspense>
-      </Layout>
+          </BrowserRouter>
+        {/* </Suspense> */}
+      {/* </Layout> */}
     </>
   );
 }
