@@ -14,6 +14,7 @@ import Homepage from "./pages/HomePage/HomePage";
 import CatalogPage from "./pages/CatalogPage/CatalogPage";
 import CarPage from "./pages/CarPage/CarPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import Header from "./components/Header/Header";
 
 export default function App() {
 
@@ -33,6 +34,7 @@ export default function App() {
       {/* <Layout>
         <Suspense fallback={<div>Loading...</div>}> */}
           <BrowserRouter>
+        <Header />
           <Routes>
 
             <Route path="/" element={<Homepage />} > Home </Route> 
