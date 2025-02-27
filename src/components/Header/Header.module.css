@@ -1,0 +1,15 @@
+.header {
+    padding-left: 120px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    padding-right: 120px;
+    justify-content: space-between;
+}
+
+.container {
+    flex-direction: row;
+    display: flex;
+    width: 1440px;
+    height: 68px;
+
+}
