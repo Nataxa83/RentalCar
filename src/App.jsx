@@ -1,39 +1,22 @@
-// import Layout from "./components/Layout/Layout";
+import Layout from "./components/Layout/Layout";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { lazy, Suspense} from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { lazy, Suspense} from "react";
+import { Route, Routes} from "react-router-dom";
 
-// const Homepage = lazy(() => import("./pages/HomePage/HomePage"));
-// const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
-// const CarPage = lazy(() => import("./pages/CarPage/CarPage"));
-// const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
+const Homepage = lazy(() => import("./pages/HomePage/HomePage"));
+const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
+const CarPage = lazy(() => import("./pages/CarPage/CarPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
+const Header = lazy(() => import("./components/Header/Header"));
 
-
-import Homepage from "./pages/HomePage/HomePage";
-import CatalogPage from "./pages/CatalogPage/CatalogPage";
-import CarPage from "./pages/CarPage/CarPage";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import Header from "./components/Header/Header";
 
 export default function App() {
-
-  // const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsRefreshing);
-
-  // useEffect(() => {
-  //   dispatch(refresh());
-  // }, [dispatch]);
-
-  // if (isRefreshing) {
-  //   return <div>Loading...</div>;
-  // }
-   
+  console.log("Компонент App отрендерился! ✅"); 
   return (
+
     <>
-      {/* <Layout>
-        <Suspense fallback={<div>Loading...</div>}> */}
-          <BrowserRouter>
+      <Layout>
+        <Suspense fallback={<div>Loading...</div>}>
         <Header />
           <Routes>
 
@@ -43,9 +26,8 @@ export default function App() {
             <Route path="*" element={<NotFoundPage />} />
             
           </Routes>
-          </BrowserRouter>
-        {/* </Suspense> */}
-      {/* </Layout> */}
+        </Suspense> 
+       </Layout>
     </>
   );
 }
