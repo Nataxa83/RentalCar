@@ -2,6 +2,7 @@ import Layout from "./components/Layout/Layout";
 
 import { lazy, Suspense} from "react";
 import { Route, Routes} from "react-router-dom";
+import Loader from "./components/Loader/Loader";
 
 const Homepage = lazy(() => import("./pages/HomePage/HomePage"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
@@ -16,7 +17,7 @@ export default function App() {
 
     <>
       <Layout>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
         <Header />
           <Routes>
 

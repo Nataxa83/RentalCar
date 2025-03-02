@@ -1,8 +1,9 @@
 import CatalogList from "../../components/CatalogList/CatalogList"
+import Loader from "../../components/Loader/Loader"
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars, fetchMoreCars } from "../../redux/cars/operations";
 import { useEffect, useState } from "react";
-import { selectCars, selectTotalPages } from "../../redux/cars/selectors";
+import { selectCars, selectTotalPages, selectLoading } from "../../redux/cars/selectors";
 import css from "./CatalogPage.module.css"
 
 const CatalogPage = () => {
@@ -10,7 +11,7 @@ const CatalogPage = () => {
   const dispatch = useDispatch();
   // const data = useSelector(selectCars);
   const [page, setPage] = useState(1);
-  // const loading = useSelector((state) => state.carsData.loading);
+  const loading = useSelector(selectLoading);
   // const error = useSelector((state) => state.carsData.error);
 
  
@@ -30,7 +31,7 @@ const CatalogPage = () => {
     }
   }, [dispatch, page]);
 
-  // if (loading) return <p>Загрузка...</p>;
+  if (loading) return <Loader />;
   // if (error) return <p>Ошибка: {error}</p>;
   // if (cars.length===0) return <p>Нет машин</p>;
 
