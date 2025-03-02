@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchCars } from "./operations";
+import { fetchCars, fetchMoreCars } from "./operations";
 
 const INITIAL_STATE = {
     cars: [],
@@ -17,7 +17,7 @@ const carsSlice = createSlice({
         builder
 
         .addMatcher(
-            isAnyOf(fetchCars.pending),
+            isAnyOf(fetchCars.pending, fetchMoreCars.pending),
             (state) => {
               state.loading = true;
               state.error = null;
@@ -25,19 +25,20 @@ const carsSlice = createSlice({
           )
 
           .addMatcher(
-            isAnyOf(fetchCars.fulfilled),
+            isAnyOf(fetchCars.fulfilled, fetchMoreCars.fulfilled),
             (state, action) => {
               console.log("Fetched Cars:", action.payload);  
               state.loading = false;
 
-              state.cars = action.payload || [];
+              // state.cars = action.payload || [];
+              state.cars = [...new Map([...state.cars, ...action.payload.cars].map(car => [car.id, car])).values()];
               state.page = action.payload.page || 1;
               state.totalPages = action.payload.totalPages || 1;
             }
           )
 
           .addMatcher(
-            isAnyOf(fetchCars.rejected),
+            isAnyOf(fetchCars.rejected, fetchMoreCars.rejected),
             (state, action) => {
               state.loading = false;
               state.error = action.error ? action.error.message : "An error occurred";
