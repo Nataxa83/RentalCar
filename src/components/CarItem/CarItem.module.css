@@ -1,0 +1,80 @@
+.carItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    width: 276px;
+    height: 424px;
+    /* border: 1px solid #000; */
+}
+
+.img {
+    height: 268px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(18, 20, 23, 0.5) 0%, rgba(18, 20, 23, 0.5) 100%);
+    margin-bottom: 16px;
+}
+
+.carInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 11px; 
+    margin-bottom: 8px;
+}
+
+.link {
+    border-radius: 12px;
+    padding: 12px 97px;
+    width: 276px;
+    height: 44px;
+    background-color: #3470ff;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #ffffff;
+}
+
+.link:hover,
+.link:focus {
+    background-color: #0b44cd;
+}
+
+.brand,
+.year,
+.price {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+}
+
+.model {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #3470ff;
+}
+
+.city,
+.country,
+.company,
+.carType,
+.mileage {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.33333;
+    color: #8d929a;
+    border-right: 1px solid #8d929a ;
+    padding-right: 6px;
+    padding-left: 6px;
+}
+
+.city:first-child,
+.carType:first-child {
+    padding-left: 0;
+}
+
+.mileage:last-child {
+    border-right: none;
+}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../../redux/cars/operations";
 import { useEffect } from "react";
 import { selectCars } from "../../redux/cars/selectors";
+import css from "../CatalogList/CatalogList.module.css"
 
 
 export default function CatalogList() {
@@ -28,7 +29,7 @@ export default function CatalogList() {
 
 return (
   
-  <ul className="list">
+  <ul className={css.catalogList}>
     {cars.map(car => (
       <li key={car.id}>
         <CarItem cars={car} />
