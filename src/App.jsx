@@ -6,7 +6,7 @@ import Loader from "./components/Loader/Loader";
 
 const Homepage = lazy(() => import("./pages/HomePage/HomePage"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
-const CarPage = lazy(() => import("./pages/CarPage/CarPage"));
+const CarDetailsPage = lazy(() => import("./pages/CarDetailsPage/CarDetailsPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 const Header = lazy(() => import("./components/Header/Header"));
 
@@ -22,7 +22,7 @@ export default function App() {
 
             <Route path="/" element={<Homepage />} > Home </Route> 
             <Route path="/catalog" element={<CatalogPage />}> Catalog </Route>
-            <Route path ="/catalog/:id" element={<CarPage />} > Car </Route>
+            <Route path ="/catalog/:id" element={<CarDetailsPage />} > Car </Route>
             <Route path="*" element={<NotFoundPage />} />
             
           </Routes>

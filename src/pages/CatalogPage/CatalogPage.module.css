@@ -20,3 +20,7 @@
 .loadMore:focus {
     border: 1px solid #0b44cd;
 }
+
+.catalog{
+    margin-top: 8px;
+} 

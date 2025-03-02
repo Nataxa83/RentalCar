@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchCars, fetchMoreCars } from "./operations";
+import { fetchCars, fetchMoreCars, fetchCarById } from "./operations";
 
 const INITIAL_STATE = {
     cars: [],
@@ -17,7 +17,7 @@ const carsSlice = createSlice({
         builder
 
         .addMatcher(
-            isAnyOf(fetchCars.pending, fetchMoreCars.pending),
+            isAnyOf(fetchCars.pending, fetchMoreCars.pending, fetchCarById.pending ),
             (state) => {
               state.loading = true;
               state.error = null;
@@ -25,20 +25,32 @@ const carsSlice = createSlice({
           )
 
           .addMatcher(
-            isAnyOf(fetchCars.fulfilled, fetchMoreCars.fulfilled),
+            isAnyOf(fetchCars.fulfilled, fetchMoreCars.fulfilled, fetchCarById.fulfilled),
             (state, action) => {
               console.log("Fetched Cars:", action.payload);  
               state.loading = false;
 
-              // state.cars = action.payload || [];
-              state.cars = [...new Map([...state.cars, ...action.payload.cars].map(car => [car.id, car])).values()];
-              state.page = action.payload.page || 1;
-              state.totalPages = action.payload.totalPages || 1;
+              if (Array.isArray(action.payload.cars)) {
+                // Если пришел массив машин (fetchCars, fetchMoreCars)
+                state.cars = [...new Map([...state.cars, ...action.payload.cars].map(car => [car.id, car])).values()];
+                state.page = action.payload.page || 1;
+                state.totalPages = action.payload.totalPages || 1;
+                state.current = action.payload.current || 1;
+            } else if (action.payload.id) {
+                // Если пришла одна машина (fetchCarById)
+                state.cars = [...new Map([...state.cars, action.payload].map(car => [car.id, car])).values()];
+            }
+
+              // state.cars = [...new Map([...state.cars, ...action.payload.cars].map(car => [car.id, car])).values()];
+              // state.page = action.payload.page || 1;
+              // state.totalPages = action.payload.totalPages || 1;
+
+              // state.current = action.payload.current || 1;
             }
           )
 
           .addMatcher(
-            isAnyOf(fetchCars.rejected, fetchMoreCars.rejected),
+            isAnyOf(fetchCars.rejected, fetchMoreCars.rejected, fetchCarById.rejected),
             (state, action) => {
               state.loading = false;
               state.error = action.error ? action.error.message : "An error occurred";

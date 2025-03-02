@@ -39,7 +39,7 @@ const CatalogPage = () => {
 
   return (
     <div>
-        <div>
+        <div className={css.catalog}>
           {Array.isArray(cars) && cars.length > 0 ? ( <CatalogList cars={cars} />) : (<p>No cars found</p>)}
           
         </div>
@@ -52,7 +52,7 @@ const CatalogPage = () => {
               Load more
             </button>
           )}
-        </div>
+    </div>
  );
 };
 
