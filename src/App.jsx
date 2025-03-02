@@ -1,7 +1,7 @@
 // import Layout from "./components/Layout/Layout";
 
 // import { useDispatch, useSelector } from "react-redux";
-// import { lazy, Suspense, useEffect } from "react";
+// import { lazy, Suspense} from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 // const Homepage = lazy(() => import("./pages/HomePage/HomePage"));

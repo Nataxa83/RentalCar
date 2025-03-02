@@ -1,21 +1,27 @@
 import css from "./Navigation.module.css"
+import clsx from "clsx"
+import { NavLink } from "react-router-dom"
 
 
-import { Link } from "react-router-dom"
-
+const isActiveClass = ({ isActive }) => 
+  clsx(css.link, isActive && css.active);
 
 const Navigation = () => {
-
   return (
-      <div className={css.nav}>
-         <Link to="/" > <span className={css.link}> Home </span> </Link>
-           
-         {
-            
-          <Link to="/catalog" > <span className={css.link}> Catalog  </span></Link>
-          }
-      </div>
-  
+      <nav className={css.nav}>
+         <ul className={css.navList}>
+            <li>
+              <NavLink className={isActiveClass} to="/">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className={isActiveClass} to="/catalog">
+                Catalog
+              </NavLink>
+            </li>
+          </ul>
+      </nav>
   )
 }
 

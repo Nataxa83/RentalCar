@@ -3,12 +3,13 @@ import Navigation from "../Navigation/Navigation"
 import css from "./Header.module.css"
 
 const Header = () => {
+ 
   return (
-    <header className={css.container}>
-    <div className={css.header}>
-        <Logo />
-        <Navigation />
-    </div>
+    <header>
+      <div className={css.header}>
+          <Logo />
+          <Navigation />
+      </div>
     </header>
   )
 }

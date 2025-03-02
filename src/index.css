@@ -5,8 +5,7 @@
 }
 
 body {
-  font-family: sans-serif;
-  line-height: 1.5;
+  font-family: "Manrope", sans-serif;  
 }
 
 h1,
@@ -29,8 +28,16 @@ ol {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 a{
   text-decoration: none;
+  color: currentColor;
+}
+
+button {
+  cursor: pointer;
+  border: none; 
+  padding: 0;
 }
