@@ -12,7 +12,6 @@ const Header = lazy(() => import("./components/Header/Header"));
 
 
 export default function App() {
-  console.log("Компонент App отрендерился! ✅"); 
   return (
 
     <>

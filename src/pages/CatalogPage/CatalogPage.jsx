@@ -1,9 +1,12 @@
 import CatalogList from "../../components/CatalogList/CatalogList"
 import Loader from "../../components/Loader/Loader"
+import Error from "../../components/Error/Error"
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars, fetchMoreCars } from "../../redux/cars/operations";
 import { useEffect, useState } from "react";
-import { selectCars, selectTotalPages, selectLoading } from "../../redux/cars/selectors";
+import { selectCars, selectTotalPages, selectLoading, selectError } from "../../redux/cars/selectors";
+
 import css from "./CatalogPage.module.css"
 
 const CatalogPage = () => {
@@ -12,7 +15,7 @@ const CatalogPage = () => {
   // const data = useSelector(selectCars);
   const [page, setPage] = useState(1);
   const loading = useSelector(selectLoading);
-  // const error = useSelector((state) => state.carsData.error);
+  const error = useSelector(selectError);
 
  
   useEffect(() => {
@@ -32,13 +35,12 @@ const CatalogPage = () => {
   }, [dispatch, page]);
 
   if (loading) return <Loader />;
-  // if (error) return <p>Ошибка: {error}</p>;
-  // if (cars.length===0) return <p>Нет машин</p>;
+  if (error) return <Error error={error} />;
 
   return (
     <div>
         <div>
-          {Array.isArray(cars) && cars.length > 0 ? ( <CatalogList cars={cars} />) : (<p>Нет машин</p>)}
+          {Array.isArray(cars) && cars.length > 0 ? ( <CatalogList cars={cars} />) : (<p>No cars found</p>)}
           
         </div>
 
