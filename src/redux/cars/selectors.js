@@ -6,3 +6,4 @@ export const selectError = state => state.carsData?.error
 export const selectCarById = (state, id) => {
     return state.carsData?.cars.find(car => car.id === id);
   };
+

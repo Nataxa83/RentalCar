@@ -12,7 +12,6 @@ import css from "./CatalogPage.module.css"
 const CatalogPage = () => {
 
   const dispatch = useDispatch();
-  // const data = useSelector(selectCars);
   const [page, setPage] = useState(1);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);

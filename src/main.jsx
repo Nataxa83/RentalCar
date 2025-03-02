@@ -10,8 +10,6 @@ import App from "./App.jsx";
 
 import "./index.css";
 
-console.log("Файл index.js загружен! 🚀"); 
-
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter

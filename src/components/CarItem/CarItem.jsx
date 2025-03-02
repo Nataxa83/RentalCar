@@ -1,8 +1,23 @@
 import { Link } from "react-router-dom";
 import css from "./CarItem.module.css"
+import { useDispatch, useSelector } from "react-redux";
+import sprite from "../../images/sprite.svg";
+import { likeOn, likeOff } from "../../redux/likedCars/slice";
+import { selectLikedCar } from "../../redux/likedCars/selectors";
 
 export default function CarItem({cars}) {
+  const dispatch = useDispatch();
 
+  const likedCars = useSelector(selectLikedCar);
+  
+  const isFavorite = likedCars.favorites.includes(cars.id);
+  
+  const handleLikeOn = () => {
+    dispatch(likeOn(cars.id));
+  };
+  const handleLikeOff = () => {
+    dispatch(likeOff(cars.id));
+  };
   return (
     <div className={css.carItem}>
         <div >
@@ -13,6 +28,20 @@ export default function CarItem({cars}) {
                 className={css.img}
               />
               
+              {isFavorite ? (
+            <svg
+              className={css.likeOn}
+              onClick={handleLikeOff}>
+              <use href={`${sprite}#icon-likeOn`}></use>
+            </svg>
+          ) : (
+            <svg
+              className={css.likeOff}
+              onClick={handleLikeOn}>
+              <use href={`${sprite}#icon-likeOff`}></use>
+            </svg>
+          )}
+
             </div>
 
             <div className={css.carInfo} >

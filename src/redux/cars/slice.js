@@ -31,21 +31,13 @@ const carsSlice = createSlice({
               state.loading = false;
 
               if (Array.isArray(action.payload.cars)) {
-                // Если пришел массив машин (fetchCars, fetchMoreCars)
                 state.cars = [...new Map([...state.cars, ...action.payload.cars].map(car => [car.id, car])).values()];
                 state.page = action.payload.page || 1;
                 state.totalPages = action.payload.totalPages || 1;
                 state.current = action.payload.current || 1;
             } else if (action.payload.id) {
-                // Если пришла одна машина (fetchCarById)
                 state.cars = [...new Map([...state.cars, action.payload].map(car => [car.id, car])).values()];
             }
-
-              // state.cars = [...new Map([...state.cars, ...action.payload.cars].map(car => [car.id, car])).values()];
-              // state.page = action.payload.page || 1;
-              // state.totalPages = action.payload.totalPages || 1;
-
-              // state.current = action.payload.current || 1;
             }
           )
 

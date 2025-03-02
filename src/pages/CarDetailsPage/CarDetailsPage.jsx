@@ -27,7 +27,7 @@ const CarDetailsPage = () => {
   if (error) return <Error error={error} />;
 
   return (
-    <div>
+    <div className={css.container}>
      
         <div >
            <img
